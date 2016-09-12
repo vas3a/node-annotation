@@ -27,6 +27,8 @@ FileReader.prototype.read = function(path, callback) {
 
                 callback(null, data.toString());
             });
+        } else {
+            callback('File not found for path: '+path, null);
         }
     });
 }

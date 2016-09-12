@@ -9,11 +9,15 @@ var annotation = function(path, callback) {
 
     fileReader.read(path, function(err, result) {
         if (err) {
-            console.log(err);
+            return callback(err, null);
         }
 
-        annotationParser.parse(result, function(comments) {
-            callback(new AnnotationReader(comments));
+        annotationParser.parse(result, function(err, comments) {
+            if(err) {
+                return callback(err, null);
+            }
+
+            callback(null, new AnnotationReader(comments));
         });
     });
 }
