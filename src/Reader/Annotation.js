@@ -9,6 +9,10 @@ AnnotationReader.prototype.getClassAnnotations = function() {
 }
 
 AnnotationReader.prototype.getMethodAnnotations = function(name) {
+    if(!name) {
+        return this.comments.methods;
+    }
+
     if (!this.comments.methods[name]) {
         throw new Error('The method ' + name + ' was not found between the comments');
     }
@@ -17,6 +21,10 @@ AnnotationReader.prototype.getMethodAnnotations = function(name) {
 }
 
 AnnotationReader.prototype.getPropertyAnnotations = function(name) {
+    if(!name) {
+        return this.comments.properties;
+    }
+
     if (!this.comments.properties[name]) {
         throw new Error('The property ' + name + ' was not found between the comments');
     }
